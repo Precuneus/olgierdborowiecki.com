@@ -18,7 +18,7 @@ try {
   esbuild = req('esbuild');
 }
 
-const pages = ['index.html', 'blog/index.html', 'privacy.html'];
+const pages = ['index.html', 'blog/index.html', 'blog/game-of-probabilities/index.html', 'blog/train-yourself-with-ai/index.html', 'privacy.html'];
 const js = (code) => esbuild.transformSync(code, { loader: 'js', minify: true, legalComments: 'none', charset: 'utf8' }).code.trim();
 const css = (code) => esbuild.transformSync(code, { loader: 'css', minify: true, legalComments: 'none', charset: 'utf8' }).code.trim();
 
@@ -42,6 +42,7 @@ for (const page of pages) {
   html = html.replace(/\s+/g, ' ').trim();
   html = html.replace(/\u0000(\d+)\u0000/g, (_, i) => kept[Number(i)]);
 
+  mkdirSync(dirname(join(root, 'public', page)), { recursive: true });
   writeFileSync(join(root, 'public', page), html + '\n');
   console.log(`${page}: ${Buffer.byteLength(html)} bytes`);
 }
