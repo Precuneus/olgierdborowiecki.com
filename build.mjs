@@ -18,7 +18,7 @@ try {
   esbuild = req('esbuild');
 }
 
-const pages = ['index.html', 'blog/index.html', 'blog/game-of-probabilities/index.html', 'blog/train-yourself-with-ai/index.html', 'privacy.html'];
+const pages = ['index.html', 'blog/index.html', 'blog/game-of-probabilities/index.html', 'blog/train-yourself-with-ai/index.html', 'blog/practical-guidelines-for-prompting/index.html', 'privacy.html'];
 const js = (code) => esbuild.transformSync(code, { loader: 'js', minify: true, legalComments: 'none', charset: 'utf8' }).code.trim();
 const css = (code) => esbuild.transformSync(code, { loader: 'css', minify: true, legalComments: 'none', charset: 'utf8' }).code.trim();
 
