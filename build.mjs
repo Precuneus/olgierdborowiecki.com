@@ -38,7 +38,8 @@ for (const page of pages) {
     return keep(`<script${attrs}>${js(body)}</script>`);
   });
   html = html.replace(/<style\b([^>]*)>([\s\S]*?)<\/style>/g, (whole, attrs, body) => keep(`<style${attrs}>${css(body)}</style>`));
-  html = html.replace(/<!--[\s\S]*?-->/g, '');
+  // a claim mark, <!--[s:id]-->, stays in the served page so lint can resolve its citation there
+  html = html.replace(/<!--(?!\s*\[[so]:)[\s\S]*?-->/g, '');
   html = html.replace(/\s+/g, ' ').trim();
   html = html.replace(/\u0000(\d+)\u0000/g, (_, i) => kept[Number(i)]);
 
